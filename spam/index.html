@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <select name="actorname" id="actor">
+    </select>
+    <button type="button" onclick="display()"> submit</button>
+    <div class="container" id="container"></div>
+</body>
+<script>
+    class linker
+    {
+        constructor(l, c, name) {
+            this.li = l;
+            this.co = c;
+            this.name = name;
+        }
+        get link()
+        {
+            return this.li;
+        }
+        get count()
+        {
+            return this.co;
+        }
+        get Name()
+        {
+            return this.name;
+        }
+    }
+    var arr = [
+        new linker("https://www.behindwoods.com/tamil-actress/catherine-tresa/catherine-tresa-stills-photos-pictures-1072.jpg",1072,"catherine-tresa"),
+        new linker("https://www.behindwoods.com/tamil-actress/nivetha-pethuraj/nivetha-pethuraj-stills-photos-pictures-403.jpg",403,"nivetha-pethuraj"),
+        new linker("https://www.behindwoods.com/tamil-actress/disha-patani/disha-patani-stills-photos-pictures-457.jpg",457,"disha-patani"),   
+        new linker("https://www.behindwoods.com/tamil-actress/poonam-bajwa/poonam-bajwa-stills-photos-pictures-793.jpg",793,"poonam-bajwa"),
+        new linker("https://www.behindwoods.com/tamil-actress/andrea/andrea-stills-photos-pictures-529.jpg",530,"andrea"),
+        new linker("https://www.behindwoods.com/tamil-actress/kajal-aggarwal/kajal-aggarwal-stills-photos-pictures-2098.jpg",2098,"andrea"),
+        new linker("https://www.behindwoods.com/tamil-actress/deepti-sati/deepti-sati-stills-photos-pictures-30.jpg",30,"deepti-sati"),
+        new linker("https://www.behindwoods.com/tamil-actress/neha-sharma/neha-sharma-stills-photos-pictures-481.jpg",481,"neha-sharma"),
+        new linker("https://www.behindwoods.com/tamil-actress/deepika-padukone/deepika-padukone-stills-photos-pictures-1041.jpg",1041,"deepika-padukone"),
+        new linker("https://www.behindwoods.com/tamil-actress/ileana/ileana-stills-photos-pictures-905.jpg",905,"ileana"),
+        new linker("https://www.behindwoods.com/tamil-actress/lavanya-tripathi/lavanya-tripathi-stills-photos-pictures-600.jpg",600,"lavanya-tripathi"),
+        new linker("https://www.behindwoods.com/tamil-actress/megha-akash/megha-akash-stills-photos-pictures-445.jpg",445,"megha-akash"),
+        new linker("https://www.behindwoods.com/tamil-actress/nabha-natesh/nabha-natesh-stills-photos-pictures-264.jpg",264,"nabha-natesh"),
+        new linker("https://www.behindwoods.com/tamil-actress/priyanka-chopra/priyanka-chopra-stills-photos-pictures-1175.jpg",1175,"priyanka-chopra"),
+        new linker("https://www.behindwoods.com/tamil-actress/raai-laxmi/raai-laxmi-stills-photos-pictures-982.jpg",982,"raai-laxmi"),
+        new linker("https://www.behindwoods.com/tamil-actress/rakul-preet-singh/rakul-preet-singh-stills-photos-pictures-2285.jpg",2285,"rakul-preet-singh"),
+        new linker("https://www.behindwoods.com/tamil-actress/rashmi-gautam/rashmi-gautam-stills-photos-pictures-558.jpg",558,"rashmi-gautam"),
+        new linker("https://www.behindwoods.com/tamil-actress/regina-cassandra/regina-cassandra-stills-photos-pictures-1565.jpg",1565,"regina-cassandra"),
+        new linker("https://www.behindwoods.com/tamil-actress/riya-sen/riya-sen-stills-photos-pictures-89.jpg",90,"riya-sen"),
+        new linker("https://www.behindwoods.com/tamil-actress/samantha-ruth-prabhu/samantha-ruth-prabhu-stills-photos-pictures-2302.jpg",2302,"samantha-ruth-prabhu"),
+        new linker("https://www.behindwoods.com/tamil-actress/sanjana-singh/sanjana-singh-photos-pictures-stills-594.html",594,"sanjana-singh"),
+        new linker("https://www.behindwoods.com/tamil-actress/shriya-saran/shriya-saran-photos-pictures-stills-1215.html",1215,"shriya-saran"),
+        new linker("https://www.behindwoods.com/tamil-actress/sunny-leone/sunny-leone-stills-photos-pictures-1554.jpg",1554,"sunny-leone"),
+        new linker("https://www.behindwoods.com/tamil-actress/tamannaah-bhatia/tamannaah-bhatia-stills-photos-pictures-1886.jpg",1886,"tamannaah-bhatia"),
+        new linker("https://www.behindwoods.com/tamil-actress/trisha-krishnan/trisha-krishnan-stills-photos-pictures-746.jpg",746,"trisha-krishnan"),
+        new linker("https://www.behindwoods.com/tamil-actress/yami-gautam/yami-gautam-photos-pictures-stills-347.html",347,"yami-gautam")
+    ];
+    invoke()
+    function invoke()
+    {
+        var sel = document.getElementById("actor");
+        arr.forEach(element => {
+            var option = document.createElement("option");
+            option.text = element.Name;
+            sel.add(option);
+        });
+    }
+
+    function display() {
+        var SelName = document.getElementById("actor").value;
+        arr.forEach(element => {
+            if(element.Name == SelName)
+            getlink(element); 
+        });
+    }
+    function getlink(ele)
+    {
+        var link = ele.link;
+        var count = ele.count;
+        var idx = link.search(count);
+        const l1 = link.slice(0,idx);
+        const l2 = link.slice(idx).replace(count,"");
+        var linkurl = l1 + count + l2;
+        console.log(linkurl);
+        var i = count+1;
+        var img = document.createElement('img'); 
+        img.src = linkurl;
+        document.getElementById('container').appendChild(img);
+        for(var i=10;i<count;i++)
+        {
+            var img = document.createElement('img'); 
+            // img.style.width= "50%";
+            img.src = l1 + ""+i+""+l2;
+            document.getElementById('container').appendChild(img);
+        }
+    }
+</script>
+</html>
+
+
+
+
+
+<!-- <option value="catherine-tresa">Catherine Tresa</option>
+        <option value="nivetha-pethuraj">Nivetha Pethuraj</option>
+        <option value="disha-patani">Disha Patani</option>
+        <option value="poonam-bajwa">Poonam Bajwa</option>
+        <option value="andrea">Andrea</option>
+        <option value="kajal-aggarwal">Kajal Agarwal</option>
+        <option value="deepti-sati">Deepti Sati</option>
+        <option value="neha-sharma">Neha Sharma</option>
+        <option value="deepika-padukone">Deepika Padukone</option>
+        <option value="ileana">Ileana</option>
+        <option value="lavanya-tripathi">Lavanya Tripathi</option>
+        <option value="megha-akash">Megha Akash</option>
+        <option value="nabha-natesh">Nabha Natesh</option>
+        <option value="priyanka-chopra">Priyanka Chopra</option>
+        <option value="raai-laxmi">Raai Laxmi</option>
+        <option value="rakul-preet-singh">Rakul Preet Singh</option>
+        <option value="rashmi-gautam">Rashmi Gautam</option>
+        <option value="regina-cassandra">Regina Cassandra</option>
+        <option value="riya-sen">Riya Sen</option>
+        <option value="samantha-ruth-prabhu">Samantha Ruth Prabhu</option>
+        <option value="sanjana-singh">Sanjana Singh</option>
+        <option value="shriya-saran">Shriya Saran</option>
+        <option value="sunny-leone">Sunny Leone</option>
+        <option value="tamannaah-bhatia">Tamannaah Bhatia</option>
+        <option value="trisha-krishnan">Trisha Krishnan</option>
+        <option value="yami-gautam">Yami Gautam</option> -->
